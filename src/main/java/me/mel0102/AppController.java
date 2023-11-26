@@ -13,7 +13,7 @@ public class AppController implements Controller {
 
     AppController(Stage primaryStage) {
         this.routeController = new RouteController();
-        this.routeController.loadStage(primaryStage);
+        routeController.loadStage(primaryStage);
 
         this.modelRegistry = new ModelRegistry();
 

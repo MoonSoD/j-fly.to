@@ -28,9 +28,4 @@ public class Main extends Application {
         appController.register();
 
     }
-
-    private void exitProgram(WindowEvent e) {
-        //modelRegistry.save();
-        System.exit(0);
-    }
 }

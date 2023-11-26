@@ -41,7 +41,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.mel0102.Route.Routes.LoginController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -49,7 +49,7 @@
             <Text layoutX="188.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
             <Text layoutX="188.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="heslo" />
             <PasswordField layoutX="188.0" layoutY="223.0" prefHeight="40.0" prefWidth="264.0" promptText="********" />
-            <Button layoutX="188.0" layoutY="289.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="264.0" text="Prihlásiť" />
+            <Button fx:id="login" layoutX="188.0" layoutY="289.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="264.0" text="Prihlásiť" />
             <Label layoutX="278.0" layoutY="56.0" text="Fly.to">
                <font>
                   <Font name="System Bold" size="26.0" />
