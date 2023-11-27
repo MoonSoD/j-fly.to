@@ -16,14 +16,29 @@ public class UserService implements ModelService {
         return users.stream().filter(u -> u.getId() == id).findFirst();
     }
 
-    public void add(User user) {
+    public Optional<User> find(String email) {
+        return users.stream().filter(u -> u.getEmail().equalsIgnoreCase(email)).findFirst();
+    }
+
+    public boolean add(User user) {
         boolean exists = users.stream().anyMatch(u -> u.getId() == user.getId());
 
         if (exists) {
-            return;
+            return false;
         }
 
         users.add(user);
+        return true;
+    }
+
+    public int newPrimaryKey() {
+        return users.get(users.size() - 1).getId() + 1;
+    }
+
+    public Optional<User> loginUser(String email, String password) {
+        Optional<User> foundUser = this.users.stream().filter(u -> u.getEmail().equalsIgnoreCase(email) && u.getPassword().equals(password)).findFirst();
+
+        return foundUser;
     }
 
     @Override
@@ -40,10 +55,11 @@ public class UserService implements ModelService {
 
             int id = Integer.parseInt(parts[0]);
             String email = parts[1];
-            String name = parts[2];
-            String surname = parts[3];
+            String password = parts[2];
+            String name = parts[3];
+            String surname = parts[4];
 
-            users.add(new User(id, email, name, surname, new ArrayList<>()));
+            users.add(new User(id, email, password, name, surname, new ArrayList<>()));
         });
     }
 

@@ -1,76 +1,47 @@
 package me.mel0102.Route;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import me.mel0102.AppController;
 import me.mel0102.Controller;
-import me.mel0102.Route.Routes.LoginController;
-import me.mel0102.Route.Routes.SummaryController;
+import me.mel0102.Route.Routes.LoginRoute;
+import me.mel0102.Route.Routes.RegisterRoute;
+import me.mel0102.Route.Routes.SummaryRoute;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class RouteController implements Controller {
     private Stage primaryStage;
 
-    private Scene currentScene;
+    private RouteType currentRoute;
 
-    @FXML
-    private VBox main;
+    private List<Route> routes;
 
-    @FXML
-    private VBox login;
+    private final AppController appController;
 
-    @FXML
-    private LoginController loginController;
-
-
-    @FXML
-    private VBox summary;
-
-    @FXML
-    private SummaryController summaryController;
-
-    private HashMap<RouteType, String> routes = new HashMap<>();
-
-    public RouteController() {
-        routes.put(RouteType.LOGIN, "/login.fxml");
-        routes.put(RouteType.SUMMARY, "/summary.fxml");
+    public RouteController(AppController appController) {
+        this.appController = appController;
     }
 
     public void loadStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("Fly.to");
-    }
 
-    @FXML
-    public void initialize() {
-        System.out.println("Init");
-
+        this.routes = Arrays.asList(
+                new LoginRoute(appController),
+                new SummaryRoute(appController),
+                new RegisterRoute(appController)
+        );
     }
 
     @Override
     public void register() {
-        switchTo(RouteType.SUMMARY);
-    }
+        primaryStage.setTitle("Fly.to");
 
-    public void load(String file) {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(file));
-        try {
-            Parent view = loader.load();
-            Scene scene = new Scene(view);
+        routes.forEach(Route::load);
 
-            this.primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        switchTo(RouteType.REGISTER);
+        primaryStage.show();
     }
 
     @Override
@@ -78,9 +49,26 @@ public class RouteController implements Controller {
         primaryStage.close();
     }
 
-    public void switchTo(RouteType type) {
-        load(routes.get(type));
+    Optional<Route> getRouteByType(RouteType type) {
+        return routes
+                .stream()
+                .filter(route -> route.getType() == type)
+                .findFirst();
     }
 
+    public void switchTo(RouteType type) {
+        Optional<Route> route = getRouteByType(type);
 
+        if (route.isEmpty()) {
+            System.out.println("Route not found!");
+            return;
+        }
+
+        currentRoute = route.get().getType();
+        this.primaryStage.setScene(route.get().getScene());
+    }
+
+    public RouteType getCurrentRoute() {
+        return currentRoute;
+    }
 }

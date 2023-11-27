@@ -1,15 +1,18 @@
 package me.mel0102.Model.Models.Flight;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import me.mel0102.Model.ModelService;
 import me.mel0102.Storage.StorageUtil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class FlightService implements ModelService {
-    List<Flight> flights = new ArrayList<>();
+    ObservableList<Flight> flights = FXCollections.observableArrayList();
 
     public Optional<Flight> find(int id) {
         return flights.stream().filter(fl -> fl.getId() == id).findFirst();
@@ -31,6 +34,10 @@ public class FlightService implements ModelService {
 
     public void remove(int id) {
         flights.removeIf(flight -> flight.getId() == id);
+    }
+
+    public ObservableList<Flight> getAll() {
+        return FXCollections.unmodifiableObservableList(flights);
     }
 
     @Override

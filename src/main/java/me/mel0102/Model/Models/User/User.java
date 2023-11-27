@@ -9,21 +9,25 @@ import java.util.List;
 public class User extends Model {
     private int id;
     private String email;
+
+    private String password;
     private String name;
     private String surname;
     private List<Flight> flights;
 
-    public User(int id, String email, String name, String surname, List<Flight> flights) {
+    public User(int id, String email, String password, String name, String surname, List<Flight> flights) {
         this.id = id;
         this.email = email;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.flights = flights;
     }
 
-    public User(int id, String email, String name, String surname) {
+    public User(int id, String email, String password, String name, String surname) {
         this.id = id;
         this.email = email;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.flights = new ArrayList<>();
@@ -35,6 +39,10 @@ public class User extends Model {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {
@@ -51,6 +59,6 @@ public class User extends Model {
 
     @Override
     public String toRow() {
-        return String.format("%d,%s,%s,%s", id, email, name, surname);
+        return String.format("%d,%s,%s,%s,%s", id, email, password, name, surname);
     }
 }

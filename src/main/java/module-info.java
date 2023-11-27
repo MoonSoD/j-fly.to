@@ -9,4 +9,5 @@ module java1_2023_mel0102 {
     opens me.mel0102.Route;
 
     exports me.mel0102.Route.Routes;
+    exports me.mel0102.Model.Models.Flight;
 }

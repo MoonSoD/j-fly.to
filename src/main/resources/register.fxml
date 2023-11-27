@@ -45,18 +45,22 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <TextField fx:id="emailField" layoutX="188.0" layoutY="148.0" prefHeight="40.0" prefWidth="264.0" promptText="mel0102@vsb.cz" />
-            <Text layoutX="188.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
-            <Text layoutX="188.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="heslo" />
-            <PasswordField fx:id="passwordField" layoutX="188.0" layoutY="223.0" prefHeight="40.0" prefWidth="264.0" promptText="********" />
-            <Button fx:id="login" layoutX="188.0" layoutY="289.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="264.0" text="Prihlásiť" />
-            <Label layoutX="278.0" layoutY="56.0" text="Fly.to">
+            <TextField fx:id="emailField" layoutX="188.0" layoutY="106.0" prefHeight="40.0" prefWidth="264.0" promptText="mel0102@vsb.cz" />
+            <Text layoutX="188.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
+            <Text layoutX="188.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="heslo" />
+            <PasswordField fx:id="passwordField" layoutX="188.0" layoutY="181.0" prefHeight="40.0" prefWidth="264.0" promptText="********" />
+            <Button fx:id="register" layoutX="188.0" layoutY="317.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="264.0" text="Zaregistrovať" />
+            <Label layoutX="278.0" layoutY="29.0" text="Fly.to">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="227.0" layoutY="87.0" text="Pre lepší zážitok sa prihláste" />
-            <Label fx:id="wrongCredentials" visible="false" layoutX="263.0" layoutY="263.0" text="Nesprávny email alebo heslo" textFill="RED" />
+            <Label layoutX="269.0" layoutY="60.0" text="Vytvorte si účet" />
+            <Label fx:id="emailOccupied" visible="false" layoutX="273.0" layoutY="301.0" text="Email je už zaregistrovaný!" textFill="RED" />
+            <TextField fx:id="nameField" layoutX="188.0" layoutY="251.0" prefHeight="40.0" prefWidth="127.0" promptText="Jan" />
+            <Text layoutX="187.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="meno" />
+            <TextField fx:id="surnameField" layoutX="325.0" layoutY="251.0" prefHeight="40.0" prefWidth="127.0" promptText="Novak" />
+            <Text layoutX="329.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="priezvisko" />
       </children>
     </AnchorPane>
   </children>
